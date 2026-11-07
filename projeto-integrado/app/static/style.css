@@ -1,0 +1,30 @@
+:root { --azul:#1f4e8c; --azul-esc:#163a69; --cinza:#f3f5f8; --borda:#d5dbe4; --ok:#1e7d46; --erro:#b3261e; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--cinza); color:#1b2330; }
+header { background:var(--azul); color:#fff; padding:12px 24px; display:flex; align-items:center; gap:24px; }
+header h1 { font-size:20px; margin:0; }
+nav { display:flex; gap:16px; flex:1; }
+nav a, .sair a { color:#fff; text-decoration:none; font-size:14px; padding:6px 10px; border-radius:4px; }
+nav a:hover, .sair a:hover { background:var(--azul-esc); }
+.sair { font-size:13px; display:flex; align-items:center; gap:10px; }
+main { max-width:960px; margin:24px auto; padding:0 16px; }
+.cartao { background:#fff; border:1px solid var(--borda); border-radius:8px; padding:20px 24px; margin-bottom:20px; }
+h2 { margin-top:0; font-size:20px; color:var(--azul-esc); }
+label { display:block; font-size:13px; font-weight:bold; margin:12px 0 4px; }
+input, select { width:100%; padding:9px 10px; border:1px solid var(--borda); border-radius:4px; font-size:14px; }
+.linha { display:flex; gap:16px; } .linha > div { flex:1; }
+button, .botao { background:var(--azul); color:#fff; border:0; border-radius:4px; padding:10px 18px; font-size:14px; cursor:pointer; text-decoration:none; display:inline-block; }
+button:hover, .botao:hover { background:var(--azul-esc); }
+button.perigo { background:var(--erro); padding:6px 12px; font-size:12px; }
+.msg { padding:10px 14px; border-radius:4px; margin-bottom:16px; font-size:14px; }
+.msg.ok { background:#e3f4ea; color:var(--ok); border:1px solid #b6e0c6; }
+.msg.erro { background:#fbe9e7; color:var(--erro); border:1px solid #f1bdb8; }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--borda); }
+th { background:var(--cinza); }
+.cancelada { color:#8a93a1; text-decoration:line-through; }
+.tag { font-size:12px; padding:2px 8px; border-radius:10px; background:#e3f4ea; color:var(--ok); }
+.tag.cancelada { background:#eceff3; color:#6b7482; text-decoration:none; }
+.filtros { display:flex; gap:12px; align-items:flex-end; } .filtros > div { flex:1; }
+.login-caixa { max-width:360px; margin:80px auto; }
+.vazio { color:#6b7482; font-style:italic; padding:12px 0; }

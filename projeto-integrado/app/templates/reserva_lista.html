@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}Reservas do dia - ReservaQuadra{% endblock %}
+{% block conteudo %}
+<div class="cartao">
+  <h2>Reservas do dia</h2>
+  <form method="get" class="filtros">
+    <div><label for="data">Data</label>
+      <input id="data" name="data" type="date" value="{{ data }}"></div>
+    <div><label for="quadra_id">Quadra</label>
+      <select id="quadra_id" name="quadra_id">
+        <option value="">Todas</option>
+        {% for q in quadras %}
+        <option value="{{ q.id }}" {{ 'selected' if quadra_id == q.id }}>{{ q.nome }}</option>
+        {% endfor %}
+      </select></div>
+    <div><button type="submit">Filtrar</button></div>
+    <div style="flex:0"><a class="botao" href="{{ url_for('nova_reserva') }}" style="white-space:nowrap">+ Nova reserva</a></div>
+  </form>
+</div>
+
+<div class="cartao">
+  {% if reservas %}
+  <table>
+    <tr><th>Horário</th><th>Quadra</th><th>Solicitante</th><th>Finalidade</th><th>Status</th><th></th></tr>
+    {% for r in reservas %}
+    <tr class="{{ 'cancelada' if r.status == 'cancelada' }}">
+      <td>{{ r.hora_inicio }} - {{ r.hora_fim }}</td>
+      <td>{{ r.quadra }}</td>
+      <td>{{ r.solicitante }}</td>
+      <td>{{ finalidades[r.finalidade] }}</td>
+      <td><span class="tag {{ 'cancelada' if r.status == 'cancelada' }}">{{ r.status }}</span></td>
+      <td>{% if r.status == 'ativa' %}
+        <form method="post" action="{{ url_for('cancelar_reserva', reserva_id=r.id) }}">
+          <input type="hidden" name="data" value="{{ data }}">
+          <button class="perigo" type="submit">Cancelar</button>
+        </form>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p class="vazio">Nenhuma reserva para esta data.</p>
+  {% endif %}
+</div>
+{% endblock %}

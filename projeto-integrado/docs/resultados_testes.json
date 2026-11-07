@@ -1,0 +1,66 @@
+[
+  {
+    "id": "CT01",
+    "o_que_foi_testado": "Login com senha incorreta",
+    "esperado": "Acesso negado e mensagem de erro",
+    "obtido": "Permaneceu no login; mensagem: \"Login ou senha inválidos.\"",
+    "aprovado": true,
+    "print": "ct01_login_invalido.png"
+  },
+  {
+    "id": "CT02",
+    "o_que_foi_testado": "Cadastro de solicitante com dados válidos",
+    "esperado": "Solicitante salvo e listado",
+    "obtido": "Mensagem \"Solicitante cadastrado com sucesso.\"; \"Carla Dias\" apareceu na lista",
+    "aprovado": true,
+    "print": "ct02_solicitante_valido.png"
+  },
+  {
+    "id": "CT03",
+    "o_que_foi_testado": "Cadastro de solicitante sem preencher o nome",
+    "esperado": "Mensagem de erro; solicitante não é salvo",
+    "obtido": "Mensagem \"Informe o nome do solicitante.\"; nenhum solicitante novo na lista",
+    "aprovado": true,
+    "print": "ct03_solicitante_sem_nome.png"
+  },
+  {
+    "id": "CT04",
+    "o_que_foi_testado": "Reserva de quadra em horário livre (Quadra Poliesportiva, 19:00 às 20:00, Treino)",
+    "esperado": "Reserva gravada e listada com a finalidade informada",
+    "obtido": "Mensagem \"Reserva registrada com sucesso.\"; listagem mostra 19:00 - 20:00 e finalidade Treino",
+    "aprovado": true,
+    "print": "ct04_reserva_livre.png"
+  },
+  {
+    "id": "CT05",
+    "o_que_foi_testado": "Reserva na mesma quadra com horário sobreposto (19:30 às 20:30)",
+    "esperado": "Sistema impede e avisa o atendente",
+    "obtido": "Reserva não gravada; mensagem: \"Horário indisponível: já existe reserva para esta quadra nesse intervalo.\"",
+    "aprovado": true,
+    "print": "ct05_reserva_ocupada.png"
+  },
+  {
+    "id": "CT06",
+    "o_que_foi_testado": "Reserva com horário de fim anterior ao início",
+    "esperado": "Mensagem de erro; não grava",
+    "obtido": "Mensagem \"O horário de fim deve ser depois do horário de início.\"",
+    "aprovado": true,
+    "print": "ct06_fim_antes_inicio.png"
+  },
+  {
+    "id": "CT07",
+    "o_que_foi_testado": "Cancelar a reserva das 19:00 e reservar o mesmo horário de novo",
+    "esperado": "Reserva fica \"cancelada\" no histórico e o horário volta a ficar livre",
+    "obtido": "Status \"cancelada\" exibido; nova reserva aceita (\"Reserva registrada com sucesso.\")",
+    "aprovado": true,
+    "print": "ct07_cancelar_liberar.png"
+  },
+  {
+    "id": "CT08",
+    "o_que_foi_testado": "Atendente tenta abrir o cadastro de quadras",
+    "esperado": "Acesso negado e retorno à listagem",
+    "obtido": "Redirecionado para a listagem; mensagem: \"Apenas o coordenador pode acessar esta função.\"",
+    "aprovado": true,
+    "print": "ct08_acesso_restrito.png"
+  }
+]

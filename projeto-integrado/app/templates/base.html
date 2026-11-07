@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}ReservaQuadra{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% if session.get('usuario_id') %}
+  <header>
+    <h1>ReservaQuadra</h1>
+    <nav>
+      <a href="{{ url_for('listar_reservas') }}">Reservas do dia</a>
+      <a href="{{ url_for('nova_reserva') }}">Nova reserva</a>
+      <a href="{{ url_for('novo_solicitante') }}">Solicitantes</a>
+      {% if session.get('perfil') == 'coordenador' %}
+      <a href="{{ url_for('nova_quadra') }}">Quadras</a>
+      {% endif %}
+    </nav>
+    <div class="sair">{{ session.get('nome') }} ({{ session.get('perfil') }})
+      <a href="{{ url_for('sair') }}">Sair</a></div>
+  </header>
+  {% endif %}
+  <main>
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+      {% for categoria, texto in mensagens %}
+        <div class="msg {{ categoria }}" role="alert">{{ texto }}</div>
+      {% endfor %}
+    {% endwith %}
+    {% block conteudo %}{% endblock %}
+  </main>
+</body>
+</html>

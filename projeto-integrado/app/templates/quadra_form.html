@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block titulo %}Quadras - ReservaQuadra{% endblock %}
+{% block conteudo %}
+<div class="cartao">
+  <h2>Nova quadra</h2>
+  <form method="post" novalidate>
+    <div class="linha">
+      <div><label for="nome">Nome da quadra</label>
+        <input id="nome" name="nome" value="{{ form.get('nome', '') }}"></div>
+      <div><label for="modalidade">Modalidade</label>
+        <input id="modalidade" name="modalidade" value="{{ form.get('modalidade', '') }}"></div>
+      <div><label for="local">Local (opcional)</label>
+        <input id="local" name="local" value="{{ form.get('local', '') }}"></div>
+    </div>
+    <p><button type="submit">Salvar quadra</button></p>
+  </form>
+</div>
+
+<div class="cartao">
+  <h2>Quadras ativas</h2>
+  <table>
+    <tr><th>Nome</th><th>Modalidade</th><th>Local</th></tr>
+    {% for q in quadras %}
+    <tr><td>{{ q.nome }}</td><td>{{ q.modalidade }}</td><td>{{ q.local or '-' }}</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

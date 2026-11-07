@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block titulo %}Nova reserva - ReservaQuadra{% endblock %}
+{% block conteudo %}
+<div class="cartao">
+  <h2>Nova reserva</h2>
+  <form method="post" novalidate>
+    <div class="linha">
+      <div><label for="solicitante_id">Solicitante</label>
+        <select id="solicitante_id" name="solicitante_id">
+          <option value="">Selecione...</option>
+          {% for s in solicitantes %}
+          <option value="{{ s.id }}" {{ 'selected' if form.get('solicitante_id') == s.id|string }}>{{ s.nome }}</option>
+          {% endfor %}
+        </select></div>
+      <div><label for="quadra_id">Quadra</label>
+        <select id="quadra_id" name="quadra_id">
+          <option value="">Selecione...</option>
+          {% for q in quadras %}
+          <option value="{{ q.id }}" {{ 'selected' if form.get('quadra_id') == q.id|string }}>{{ q.nome }}</option>
+          {% endfor %}
+        </select></div>
+    </div>
+    <div class="linha">
+      <div><label for="data">Data</label>
+        <input id="data" name="data" type="date" value="{{ form.get('data', hoje) }}"></div>
+      <div><label for="hora_inicio">Início</label>
+        <input id="hora_inicio" name="hora_inicio" type="time" value="{{ form.get('hora_inicio', '') }}"></div>
+      <div><label for="hora_fim">Fim</label>
+        <input id="hora_fim" name="hora_fim" type="time" value="{{ form.get('hora_fim', '') }}"></div>
+      <div><label for="finalidade">Finalidade</label>
+        <select id="finalidade" name="finalidade">
+          <option value="">Selecione...</option>
+          {% for chave, rotulo in finalidades.items() %}
+          <option value="{{ chave }}" {{ 'selected' if form.get('finalidade') == chave }}>{{ rotulo }}</option>
+          {% endfor %}
+        </select></div>
+    </div>
+    <p><button type="submit">Reservar</button></p>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block titulo %}Solicitantes - ReservaQuadra{% endblock %}
+{% block conteudo %}
+<div class="cartao">
+  <h2>Novo solicitante</h2>
+  <form method="post" novalidate>
+    <div class="linha">
+      <div><label for="nome">Nome</label>
+        <input id="nome" name="nome" value="{{ form.get('nome', '') }}"></div>
+      <div><label for="vinculo">Vínculo</label>
+        <select id="vinculo" name="vinculo">
+          <option value="">Selecione...</option>
+          {% for chave, rotulo in vinculos.items() %}
+          <option value="{{ chave }}" {{ 'selected' if form.get('vinculo') == chave }}>{{ rotulo }}</option>
+          {% endfor %}
+        </select></div>
+      <div><label for="identificacao">Matrícula, RA ou crachá</label>
+        <input id="identificacao" name="identificacao" value="{{ form.get('identificacao', '') }}"></div>
+    </div>
+    <div class="linha">
+      <div><label for="telefone">Telefone (com DDD)</label>
+        <input id="telefone" name="telefone" value="{{ form.get('telefone', '') }}" placeholder="(92) 99999-0000"></div>
+      <div><label for="email">E-mail (opcional)</label>
+        <input id="email" name="email" value="{{ form.get('email', '') }}"></div>
+    </div>
+    <p><button type="submit">Salvar solicitante</button></p>
+  </form>
+</div>
+
+<div class="cartao">
+  <h2>Solicitantes cadastrados</h2>
+  {% if solicitantes %}
+  <table>
+    <tr><th>Nome</th><th>Vínculo</th><th>Identificação</th><th>Telefone</th><th>E-mail</th></tr>
+    {% for s in solicitantes %}
+    <tr><td>{{ s.nome }}</td><td>{{ vinculos[s.vinculo] }}</td><td>{{ s.identificacao }}</td>
+        <td>{{ s.telefone }}</td><td>{{ s.email or '-' }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}<p class="vazio">Nenhum solicitante cadastrado.</p>{% endif %}
+</div>
+{% endblock %}
